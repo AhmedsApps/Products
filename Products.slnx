@@ -3,5 +3,6 @@
     <Build />
     <Deploy />
   </Project>
+  <Project Path="Products.Models/Products.Models.csproj" />
   <Project Path="Products.Server/Products.Server.csproj" />
 </Solution>
