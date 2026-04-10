@@ -7,3 +7,5 @@ global using System.Security.Claims;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.EntityFrameworkCore;
 global using Products.Server.Data;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.OpenApi.Models;

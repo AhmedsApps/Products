@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
-namespace Products.Server.Controllers
+﻿namespace Products.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -15,23 +13,23 @@ namespace Products.Server.Controllers
         [HttpGet("CheckHealth")]
         public IActionResult CheckHealth() => Ok("Healthy");
 
-        [Authorize]
         [HttpGet("GetProducts")]
+        [Authorize]
         public IActionResult GetProducts([FromQuery] string? colour)
         {
             var query = _context.Products.AsQueryable();
 
             if (!string.IsNullOrEmpty(colour))
             {
-                query = query.Where(p => p.Colour == colour);
+                query = query.Where(p => string.Equals(p.Colour, colour, StringComparison.OrdinalIgnoreCase));
             }
 
             var products = query.ToList();
             return Ok(products);
         }
 
-        [Authorize]
         [HttpPost("AddProduct")]
+        [Authorize]
         public IActionResult AddProduct([FromBody] Product product)
         {
             _context.Products.Add(product);
